@@ -1,5 +1,6 @@
 package com.example06;
 
+import java.time.Year;
 import java.util.*;
 
 public class Test {
@@ -27,13 +28,15 @@ public class Test {
         Map<String, Set<User>> map = new HashMap<>();
 
         for(User user:users){
-            Set<User> set = map.getOrDefault(user.getCity(),  new HashSet<>());
-            set.add(user);
-            map.put(user.getCity(),set);
-            String city =user.getCity();
-            map.computeIfAbsent(city, k -> new HashSet<>());
-            map.get(city).add(user);
-            map.computeIfAbsent(user.getCity(),k->new HashSet<>()).add(user);
+            Set<User> set1 = map.computeIfAbsent(user.getCity(), k -> new HashSet<>());
+            set1.add(user);
+//             Set<User> set = map.getOrDefault(user.getCity(),  new HashSet<>());
+//            set.add(user);
+//            map.put(user.getCity(),set);
+//            String city =user.getCity();
+//            map.computeIfAbsent(city, k -> new HashSet<>());
+//            map.get(city).add(user);
+//            map.computeIfAbsent(user.getCity(),k->new HashSet<>()).add(user);
         }
         System.out.println(map.size());
         for(Map.Entry<String,Set<User>> all:map.entrySet()){
